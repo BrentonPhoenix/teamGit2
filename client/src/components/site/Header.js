@@ -18,14 +18,18 @@ const Header = () => {
     // function stopFetch() {
         fetch("https://api.openweathermap.org/data/2.5/weather?q=London&units=imperial&appid=59001e1f469d421690b543e76dbf29d3"
         )
-        .then(function(response){
-            console.log(response.json());
+        .then((response)=>{
+            // console.log(response.json());
             return response.json();
         })
-        .then(function(json){
-            console.log(json.data)
+        .then((json) =>{
+            setFahrenheit(json.main.temp)
+            setCelsius((fahrenheit - 32) * .5556)
+            
         })
     // }
+
+
     
 
     
@@ -65,7 +69,7 @@ const Header = () => {
                 <Nav className='ml-auto' navbar>
                         {/* {location} */}
                         {
-                            tempreture ? <h2>{fahrenheit}</h2> : <h2>{celsius}</h2>
+                            tempreture ? <h2>{fahrenheit}ºF</h2> : <h2>{celsius}ºC</h2>
                         }
                         <Button value={tempreture} onClick={(e) => setTempreture(!tempreture)}>Toggle unit of measurement!</Button>
                     {/* <NavItem>
