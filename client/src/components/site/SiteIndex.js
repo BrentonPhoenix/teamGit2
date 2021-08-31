@@ -18,7 +18,7 @@ const SiteIndex = () => {
     const properLat = coordLat
     const properLon = coordLong
     const url = `https://api.nasa.gov/planetary/earth/imagery?lon=${properLon}&lat=${properLat}&date=2014-02-01&api_key=ezYsQEwxtd6xWCyvWaKifwQHYgpjeOVrPfpBFMI4`
-    const tmUrl = `https://app.ticketmaster.com/discovery/v2/events.json?city=${location}&apikey=weIBTljaxAkS7ayMhRWHzG4huWEhWC08`
+    const tmUrl = `https://app.ticketmaster.com/discovery/v2/events.json?city=${location}&apikey=cJ0AqzOLeUYwrliXTVymX95LwRveamFV`
 
     
     
@@ -39,18 +39,33 @@ const SiteIndex = () => {
             
         })
 
-        fetch(tmUrl)
-        .then((response) => {
-            return response.json();
-        })
-        .then((json) => {
-            let cityEvents = json._embedded.events;
-            // cityEvents.forEach(vents => setEvents(<p>{vents.name}</p>));
-            cityEvents.map((vents, index) => {
-                return setEvents(<p key={index}>{vents.name}</p>)
-            })
-        })
+        // fetch(tmUrl)
+        // .then((response) => {
+        //     return response.json();
+        // })
+        // .then((json) => {
+        //     return cityEvents = json._embedded.events;
+        //     // cityEvents.forEach(vents => setEvents(<p>{vents.name}</p>));
+        //     // cityEvents.map((vents) => {
+        //     //     setEvents(<p>{vents.name}</p>)
+        //     // })
+        // })
      }
+    //  const tmFetch = () => {
+    //     fetch(tmUrl)
+    //     .then((response)=>{
+    //         // console.log(response.json());
+    //         return response.json();
+    //     })
+    //     .then((json) => {
+    //         // console.log(json)
+    //         //        cityEvents = json._embedded.events;
+    //                 json._embedded.events.forEach(vents => <p>{vents.name}</p>);
+    //                 // cityEvents.map((vents) => {
+    //                 //     setEvents(<p>{vents.name}</p>)
+    //                 // })
+    //             })
+    //     }
 
      return(
 
@@ -70,9 +85,9 @@ const SiteIndex = () => {
                         <img src={url} width="100%" height="auto"/>
                         <hr/>
                     </div>
-                    <div className="eventsDiv">
-                        {events}
-                    </div>
+                    {/* <div className="eventsDiv">
+                        <Button onClick={tmFetch()}> </Button>
+                    </div> */}
                 </Col>
             </Row>
         </Container>
