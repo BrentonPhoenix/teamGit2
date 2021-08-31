@@ -17,7 +17,7 @@ const SiteIndex = () => {
     const [ events, setEvents ] = useState([])
     const properLat = coordLat
     const properLon = coordLong
-    const url = `https://api.nasa.gov/planetary/earth/imagery?lon=${properLon}&lat=${properLat}&date=2014-02-01&api_key=idXEiUvlW0u3WxBGs0DgkSsPEG83g7uEdxpHKK1w`
+    const url = `https://api.nasa.gov/planetary/earth/imagery?lon=${properLon}&lat=${properLat}&date=2014-02-01&api_key=ezYsQEwxtd6xWCyvWaKifwQHYgpjeOVrPfpBFMI4`
     const tmUrl = `https://app.ticketmaster.com/discovery/v2/events.json?city=${location}&apikey=weIBTljaxAkS7ayMhRWHzG4huWEhWC08`
 
     
@@ -45,10 +45,10 @@ const SiteIndex = () => {
         })
         .then((json) => {
             let cityEvents = json._embedded.events;
-            cityEvents.forEach(vents => setEvents(<p>{vents.name}</p>));
-            // cityEvents.map((vents) => {
-            //     return setEvents(<p>{vents.name}</p>)
-            // })
+            // cityEvents.forEach(vents => setEvents(<p>{vents.name}</p>));
+            cityEvents.map((vents, index) => {
+                return setEvents(<p key={index}>{vents.name}</p>)
+            })
         })
      }
 
