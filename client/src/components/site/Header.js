@@ -16,15 +16,15 @@ const Header = () => {
     
     // get location, display location in header(centered), display onload, 
     // function stopFetch() {
-        // fetch("https://api.openweathermap.org/data/2.5/weather?q=London&units=imperial&appid=59001e1f469d421690b543e76dbf29d3")
-        // .then(function(response){
-        //     console.log(response.json());
-        //     return response.json();
-        // })
-        // .then(function(json){
-        //     console.log(json.data)
-        // })
-        // .catch(err => console.log(err));
+        fetch("https://api.openweathermap.org/data/2.5/weather?q=London&units=imperial&appid=59001e1f469d421690b543e76dbf29d3")
+        .then(function(response){
+            console.log(response.json());
+            return response.json();
+        })
+        .then(function(json){
+            console.log(json.data)
+        })
+        .catch(err => console.log(err));
     // }
     
 
