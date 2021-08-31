@@ -20,7 +20,7 @@ const Header = (props) => {
     return(
         <header>
         <Navbar className='header'>
-            <NavbarBrand>Team 2 24 Hour project</NavbarBrand>
+            <NavbarBrand className="link">Team 2 24 Hour project</NavbarBrand>
             
             <Nav className='ml-auto' navbar>
                     {/* {location} */}
