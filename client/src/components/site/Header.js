@@ -4,19 +4,24 @@ import {
     Nav,
     Button,
     NavItem,
-    NavLink
+    NavLink,
+    Input
 } from 'reactstrap';
 import { useState, useEffect } from 'react';
 
 const Header = () => {
-    const [ fahrenheit, setFahrenheit ] = useState('fahrenheit');
-    const [ celsius, setCelsius ] = useState('celsius');
-    const [ tempreture, setTempreture ] = useState(false);
-
+    const [ fahrenheit, setFahrenheit ] = useState('');
+    const [ location, setLocation ] = useState('');
+    const [ tempreture, setTempreture ] = useState(true);
+    const [ coordLat,setCoordLat ] = useState('')
+    const [ coordLong,setCoordLong ] = useState('')
+    const properLat = coordLat
+    const properLon = coordLong
+    const url = `https://api.nasa.gov/planetary/earth/imagery?lon=${properLon}&lat=${properLat}&date=2014-02-01&api_key=idXEiUvlW0u3WxBGs0DgkSsPEG83g7uEdxpHKK1w`
     
     // get location, display location in header(centered), display onload, 
-    // function stopFetch() {
-        fetch("https://api.openweathermap.org/data/2.5/weather?q=London&units=imperial&appid=59001e1f469d421690b543e76dbf29d3"
+     function controlFetch() {
+        fetch(`https://api.openweathermap.org/data/2.5/weather?q=${location}&units=imperial&appid=59001e1f469d421690b543e76dbf29d3`
         )
         .then((response)=>{
             // console.log(response.json());
@@ -24,17 +29,30 @@ const Header = () => {
         })
         .then((json) =>{
             setFahrenheit(json.main.temp)
-            setCelsius((fahrenheit - 32) * .5556)
+            setCoordLat(json.coord.lat)
+            setCoordLong(json.coord.lon)
+        
+            // setCelsius((fahrenheit - 32) * .5556)
             
         })
-    // }
+     }
 
-
+    //  function nasaFetch(){
+    //     fetch(`https://api.nasa.gov/planetary/earth/imagery?lon=${properLon}&lat=${properLat}&date=2014-02-01&api_key=idXEiUvlW0u3WxBGs0DgkSsPEG83g7uEdxpHKK1w`
+    //     )
+    //     .then((response)=>{
+    //         // console.log(response.json());
+    //         return response.json();
+    //     })
+    //  }
+//no fetch just image tag?
     
 
     
     
-
+    //Look for an API with coordinants of cities tie to location to get Nasa pic
+    //Number((value).toFixed(decimalplaces))
+    //Number((89.467382).toFixed(4))// would give you 89.4673 
 
 
 
@@ -65,11 +83,14 @@ const Header = () => {
     return(
         <header>
             <Navbar className='header'>
-                <NavbarBrand href='/'>Team 2 24 Hour project</NavbarBrand>
+                <NavbarBrand>Team 2 24 Hour project</NavbarBrand>
+                <div>
+                    <img src={url} height='500px' width='auto'/>
+                </div>
                 <Nav className='ml-auto' navbar>
                         {/* {location} */}
                         {
-                            tempreture ? <h2>{fahrenheit}ºF</h2> : <h2>{celsius}ºC</h2>
+                            tempreture ? <h2>{fahrenheit}ºF</h2> : <h2>{(fahrenheit - 32) * .5556}ºC</h2>
                         }
                         <Button value={tempreture} onClick={(e) => setTempreture(!tempreture)}>Toggle unit of measurement!</Button>
                     {/* <NavItem>
@@ -77,6 +98,15 @@ const Header = () => {
                             Github
                             </NavLink>
                     </NavItem> */}
+                    <div>
+                    <Input placeholder="Enter City Name" type="text" value={location} onChange={(e)=> setLocation(e.target.value)} ></Input>
+                    <Button value={location} onClick={controlFetch}>Get City Temp!</Button>
+                    </div>
+                    <div>
+                        {/* {coordLat}
+                        {coordLong} */}
+                    </div>
+
                 </Nav>
             </Navbar>
         </header>
