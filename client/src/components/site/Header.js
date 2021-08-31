@@ -20,12 +20,12 @@ const Header = (props) => {
     return(
         <header>
         <Navbar className='header'>
-            <NavbarBrand>Team 2 24 Hour project</NavbarBrand>
+            <NavbarBrand className="link">Team 2 24 Hour project</NavbarBrand>
             
             <Nav className='ml-auto' navbar>
                     {/* {location} */}
                     {
-                        props.tempreture ? <h2>{props.fahrenheit}ºF</h2> : <h2>{(props.fahrenheit - 32) * .5556}ºC</h2>
+                        props.tempreture ? <h2>{props.fahrenheit}ºF</h2> : <h2>{Number((props.fahrenheit - 32) * .5556).toFixed(2)}ºC</h2>
                     }
                     <Button value={props.tempreture} onClick={(e) => props.setTempreture(!props.tempreture)}>Toggle unit of measurement!</Button>
                 {/* <NavItem>
@@ -33,7 +33,7 @@ const Header = (props) => {
                         Github
                         </NavLink>
                 </NavItem> */}
-                
+                  {/* //Number((89.467382).toFixed(4))// would give you 89.4673  */}
                 <div>
                     {/* {coordLat}
                     {coordLong} */}

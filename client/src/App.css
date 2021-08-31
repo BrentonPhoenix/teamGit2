@@ -2,12 +2,16 @@
   text-align: center;
 }
 
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
 header {
   position: sticky;
-  background-color: gray;
-  padding-left: 20px;
-  padding-right: 20px;
-  
+  background-color: lightslategrey;
+  padding: 15px;
+  margin-bottom: 15px;
+  border-bottom: solid 2px lightgrey;
 }
 
 .link {
@@ -26,9 +30,20 @@ header {
 }
 
 div.main {
-  background-color: lightgrey;
+  background-color: rgb(165, 165, 165);
+}
+
+.mainDiv {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+Button {
+  margin: 10px;
 }
 
 footer {
-  position: flex;
+  background-color: lightslategrey;
+  padding-top: 5px;
+  border-top: solid 2px lightgrey;
 }
