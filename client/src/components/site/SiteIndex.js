@@ -44,12 +44,19 @@ const SiteIndex = () => {
             return response.json();
         })
         .then((json) => {
-            let cityEvents = json._embedded.events;
-            // cityEvents.forEach(vents => setEvents(<p>{vents.name}</p>));
-            cityEvents.map((vents, index) => {
-                return setEvents(<p key={index}>{vents.name}</p>)
-            })
-        })
+            const cityEvents = json._embedded.events;
+            cityEvents.forEach(vents => setEvents(<p>{vents.name}</p>));
+
+            // cityEvents.map((vents, index) => {
+            //     return setEvents(<p key={index}>{vents.name}</p>)
+            // })
+            
+            // {cityEvents.map((events, index) => (
+            //     <div key={index}>
+            //         <h3>{events.name}</h3>
+            //     </div>
+            // ))};
+        });
      }
 
      return(
