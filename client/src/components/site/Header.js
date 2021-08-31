@@ -1,36 +1,66 @@
+import React, {useState} from "react"
 import {
     Navbar,
     NavbarBrand,
     Nav,
     Button,
     NavItem,
-    NavLink
+    NavLink,
+    Input
 } from 'reactstrap';
-import { useState, useEffect } from 'react';
 
-const Header = () => {
-    const [ fahrenheit, setFahrenheit ] = useState('fahrenheit');
-    const [ celsius, setCelsius ] = useState('celsius');
-    const [ temperature, setTemperature ] = useState(false);
+
+
+
+const Header = (props) => {
+
+
+
+
+    return(
+        <header>
+        <Navbar className='header'>
+            <NavbarBrand>Team 2 24 Hour project</NavbarBrand>
+            
+            <Nav className='ml-auto' navbar>
+                    {/* {location} */}
+                    {
+                        props.tempreture ? <h2>{props.fahrenheit}ºF</h2> : <h2>{(props.fahrenheit - 32) * .5556}ºC</h2>
+                    }
+                    <Button value={props.tempreture} onClick={(e) => props.setTempreture(!props.tempreture)}>Toggle unit of measurement!</Button>
+                {/* <NavItem>
+                    <NavLink href='https://github.com/yourhandle/yourRepoForThisApp'>
+                        Github
+                        </NavLink>
+                </NavItem> */}
+                
+                <div>
+                    {/* {coordLat}
+                    {coordLong} */}
+                </div>
+
+            </Nav>
+        </Navbar>
+    </header>
+    )
+}
+    //  function nasaFetch(){
+    //     fetch(`https://api.nasa.gov/planetary/earth/imagery?lon=${properLon}&lat=${properLat}&date=2014-02-01&api_key=idXEiUvlW0u3WxBGs0DgkSsPEG83g7uEdxpHKK1w`
+    //     )
+    //     .then((response)=>{
+    //         // console.log(response.json());
+    //         return response.json();
+    //     })
+    //  }
+//no fetch just image tag?
 
     
-    // get location, display location in header(centered), display onload, 
-    // function stopFetch() {
-        fetch("https://api.openweathermap.org/data/2.5/weather?q=London&units=imperial&appid=59001e1f469d421690b543e76dbf29d3")
-        .then(function(response){
-            console.log(response.json());
-            return response.json();
-        })
-        .then(function(json){
-            console.log(json.data)
-        })
-        .catch(err => console.log(err));
-    // }
-    
 
     
     
-
+    //Look for an API with coordinants of cities tie to location to get Nasa pic
+    //Number((value).toFixed(decimalplaces))
+    //Number((89.467382).toFixed(4))// would give you 89.4673 
 
 
 
@@ -58,23 +88,4 @@ const Header = () => {
     // }, [])
 
 
-    return(
-        <header>
-            <Navbar className='header'>
-                <NavbarBrand href='/' className='link'>Team 2 24-Hour project</NavbarBrand>
-                <Nav className='ml-auto' navbar>
-                        {/* {location} */}
-                        { temperature ? <h2>{fahrenheit}</h2> : <h2>{celsius}</h2> }
-                        <Button value={temperature} onClick={(e) => setTemperature(!temperature)}>Toggle unit of measurement!</Button>
-                    {/* <NavItem>
-                        <NavLink href='https://github.com/yourhandle/yourRepoForThisApp'>
-                            Github
-                            </NavLink>
-                    </NavItem> */}
-                </Nav>
-            </Navbar>
-        </header>
-    );
-};
-
-export default Header;
+   export default Header
